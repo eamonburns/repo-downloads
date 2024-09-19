@@ -2,17 +2,34 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 )
 
-const user string = "agent-e11"
+const user string = "Agent-E11"
 
 func main() {
+	http.HandleFunc("/", handleHome)
 	http.HandleFunc("/{repo}", redirectRepo)
 	http.HandleFunc("/{repo}/{tag}", redirectTag)
 	http.HandleFunc("/{repo}/{tag}/{artifact}", redirectArtifact)
+
 	log.Fatal(http.ListenAndServe(":8000", nil))
+}
+
+type homeData struct {
+	User string
+}
+
+func handleHome(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("templates/index.tmpl.html")
+	if err != nil {
+		log.Fatalf("Error parsing template: %v", err)
+	}
+	tmpl.Execute(w, homeData{
+		User: user,
+	})
 }
 
 func redirectRepo(w http.ResponseWriter, r *http.Request) {

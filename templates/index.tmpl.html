@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Downloads - {{ .User }}</title>
+</head>
+<body>
+	<h1>Github release downloads for {{ .User }}</h1>
+	<h2>URLs</h2>
+	<ul>
+		<li><code>/{repo}</code> : Go to releases page for the <code>repo</code></li>
+		<li><code>/{repo}/{tag}</code> : Go to release page for the release with the <code>tag</code></li>
+		<li><code>/{repo}/{tag}/{artifact}</code> : Go to download page for the <code>artifact</code></li>
+	</ul>
+</body>
+</html>
