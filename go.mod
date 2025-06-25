@@ -1,3 +1,3 @@
-module github.com/agent-e11/repo-downloads
+module github.com/eamonburns/repo-downloads
 
 go 1.23.1
